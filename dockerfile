@@ -6,6 +6,8 @@ ARG HUGO_URL=https://github.com/gohugoio/hugo/releases/download
 ARG HUGO_TGZ=hugo_${HUGO_VER}_Linux-64bit.tar.gz
 
 RUN apk update && apk upgrade
+RUN echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
+    echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN apk add --update --no-cache \
     bash \
     ca-certificates \
@@ -14,7 +16,10 @@ RUN apk add --update --no-cache \
     openssh-client \
     nodejs \
     nodejs-npm \
+    chromium@edge \
+    nss@edge \
     python
+
 
 RUN curl -Ls ${HUGO_URL}/v${HUGO_VER}/${HUGO_TGZ} -o /tmp/hugo.tar.gz \
     && echo "${HUGO_SHA}  /tmp/hugo.tar.gz" | sha256sum -c - \
