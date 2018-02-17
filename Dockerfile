@@ -8,7 +8,16 @@ ARG HUGO_TGZ=hugo_${HUGO_VER}_Linux-64bit.tar.gz
 RUN apk update && apk upgrade
 RUN echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-RUN apk add --update --no-cache \
+
+RUN apk add --no-cache --virtual build-dependencies \
+    build-base \
+    libcurl \
+    libxml2-dev \
+    libxslt-dev && \
+    gem install nokogiri -- --use-system-libraries && \
+    gem install html-proofer --no-ri --no-rdoc && \
+    apk del build-dependencies && \
+    apk add --update --no-cache \
     bash \
     ca-certificates \
     curl \
@@ -21,8 +30,8 @@ RUN apk add --update --no-cache \
     python \
     udev \
     ttf-freefont \
-    chromium
-    
+    chromium 
+
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 
