@@ -1,4 +1,4 @@
-OWNER ?= bpack
+OWNER ?= mumbles
 REPO ?= hugo-npm
 VERSION ?= latest
 
