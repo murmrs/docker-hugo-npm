@@ -18,7 +18,12 @@ RUN apk add --update --no-cache \
     nodejs-npm \
     chromium@edge \
     nss@edge \
-    python
+    python \
+    udev \
+    ttf-freefont \
+    chromium
+    
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 
 RUN curl -Ls ${HUGO_URL}/v${HUGO_VER}/${HUGO_TGZ} -o /tmp/hugo.tar.gz \
