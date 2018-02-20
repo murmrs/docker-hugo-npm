@@ -1,30 +1,23 @@
-FROM alpine:3.6
+FROM ubuntu:16.04
 
 ARG HUGO_VER=0.34
 ARG HUGO_SHA=b9aa1d54e83daa1f77c0794110d2d96064bc07431337742fec903f65f0606e6e
 ARG HUGO_URL=https://github.com/gohugoio/hugo/releases/download
 ARG HUGO_TGZ=hugo_${HUGO_VER}_Linux-64bit.tar.gz
 
-RUN apk update && apk upgrade
-RUN echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
-    echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-RUN apk add --update --no-cache \
-    bash \
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get install -y \
     ca-certificates \
     curl \
     git \
-    openssh-client \
-    nodejs \
-    nodejs-npm \
-    chromium@edge \
-    nss@edge \
-    python \
-    udev \
-    ttf-freefont \
-    chromium
-    
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+    openssh-client 
 
+RUN curl -sL https://deb.nodesource.com/setup_9.x | bash
+
+RUN apt-get install -y nodejs \
+    build-essential
+
+RUN npm config set unsafe-perm=true
 
 RUN curl -Ls ${HUGO_URL}/v${HUGO_VER}/${HUGO_TGZ} -o /tmp/hugo.tar.gz \
     && echo "${HUGO_SHA}  /tmp/hugo.tar.gz" | sha256sum -c - \
