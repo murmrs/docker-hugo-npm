@@ -1,4 +1,4 @@
-Docker image derived from Alpine Linux that includes npm, Firebase, and Hugo. Enables building Hugo-based static sites that may include npm as part of the workflow (scss, minification, etc), as well as Firebase for simple static hosting. Usable with Bitbucket Pipelines and other automated deployment tools that support Docker.
+Docker image derived from Node slim that includes NPM, Firebase, and Hugo. Also includes dependencies for Critical. Enables building Hugo-based static sites that may include npm as part of the workflow (scss, minification, etc), as well as Firebase for simple static hosting. Usable with Bitbucket Pipelines and other automated deployment tools that support Docker.
 
 The latest image is available at [https://hub.docker.com/r/mumbles/docker-hugo-npm/](https://hub.docker.com/r/mumbles/docker-hugo-npm/) or simply execute `docker pull mumbles/docker-hugo-npm`.
 
