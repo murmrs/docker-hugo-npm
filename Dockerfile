@@ -1,6 +1,6 @@
 FROM node:9-slim
 
-ARG HUGO_VER=0.34
+ARG HUGO_VER=0.41
 ARG HUGO_SHA=b9aa1d54e83daa1f77c0794110d2d96064bc07431337742fec903f65f0606e6e
 ARG HUGO_URL=https://github.com/gohugoio/hugo/releases/download
 ARG HUGO_TGZ=hugo_${HUGO_VER}_Linux-64bit.tar.gz
