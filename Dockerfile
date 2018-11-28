@@ -1,4 +1,4 @@
-FROM node:9-slim
+FROM node:lts-slim
 
 ARG HUGO_VER=0.41
 ARG HUGO_SHA=e7f3b5f7552305020e426fa4a2bf1a1ca570886acc0f037b4d74e85a51fa175b
